@@ -8,7 +8,7 @@
 ![Alt-текст](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/best_examples/m2p.jpg)
 
 Примеры того, как можно преобразовать обычные пейзажи в космические:
-![Alt-текст](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/best_examples/l2s.jpg)
+![Alt-текст](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/best_examples/l2s-2.jpg)
 Первая строка - оригинальные изображения из датасета, вторая строка - сгенерированные, третья строка - изображения, восстановленные из сгенерированных.
 
 
@@ -78,6 +78,17 @@ python train_model.py --dataset_name=landscape2space --use_idt_loss=False
 # Тестирование
 
 Чтобы протестировать качество работы модели CycleGAN, нужно запустить скрипт [`test_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/test_model.py).
+
+В качестве аргументов обязательно нужно указать аргумент --pretrained_weights_dir путь в директорию, в которой хранятся предобученные веса моделей.
+
+В директории `loss_history` создается папка --losshistory_dir. Значения лоссов на каждой батче будут сохраняться в эту директорию в файле `test_loss.csv`.
+
+Сгенерированные картинки сохраняются в поддиректорию --results_dir папки `result_imgs`. В --results_dir будут созданы 2 папки:
+ - В папке AtoB сохраняются результаты генерации изображений из класса А в класс В,
+ - В папке ВtoА сохраняются результаты генерации изображений из класса В в класс А.
+Сгенерированные изображения - это сетка из 3хbatch_size картинок. Первая строка - исходные изображения (например, A), вторая - сгенерированные (соответственно, B), третья - изображения, восстановленные из сгенерированных (соответственно, A).
+ 
+Если название какой-либо из директорий --results_dir или --losshistory_dir не указано, берется дефолтное название, которое выглядит следующим образом: `dataset_name test yy-mm-dd hh-mm`, где yy-mm-dd hh-mm - текущие год-число-месяц часы-минуты.
 
 Примеры запуска: 
  - **monet2photo**  
