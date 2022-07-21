@@ -54,11 +54,12 @@
 
 
 ## `requirements.txt`
-Список необходимых пакетов и их версий, которые были использованы в процессе разработки проекта, можно найти в файле `requirements.txt'.
+Список необходимых пакетов и их версий, которые были использованы в процессе разработки проекта, можно найти в файле `requirements.txt`.
+
 
 # Обучение
 
-Чтобы начать обучение модели CycleGAN, необходимо запустить скрипт [`train_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/train_model.py). 
+Чтобы начать обучение модели CycleGAN, нужно запустить скрипт [`train_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/train_model.py). 
 
 Примеры запуска: 
  - **monet2photo**  
@@ -72,7 +73,7 @@ python train_model.py --dataset_name=landscape2space --use_idt_loss=False
 
 # Тестирование
 
-Чтобы протестировать качество работы модели CycleGAN, необходимо запустить скрипт [`test_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/test_model.py).
+Чтобы протестировать качество работы модели CycleGAN, нужно запустить скрипт [`test_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/test_model.py).
 
 Примеры запуска: 
  - **monet2photo**  
@@ -87,7 +88,12 @@ python test_model.py --dataset_name=landscape2space --pretrained_weights_dir=./c
 
 # Генерация
 
-Чтобы сгенерировать результат для своего изображения, необходимо запустить скрипт [`eval_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/eval_model.py).
+Чтобы сгенерировать результат для своего изображения, нужно запустить скрипт [`eval_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/eval_model.py).   
+
+Путь к выбранному изображению нужно передать через аргумент --path_file. 
+Также в аргументе --path_checkpoints нужно указать путь к файлу, в котором лежат веса генератора для правильного класса. То есть, например, если мы выбрали изображение картины Моне (класс А в датасете), то и в аргумент  --path_checkpoints мы передаем веса генератора, обученного переводить изображения из класса A в класс B.
+
+Результат работы сохраняется в поддиректорию --results_dir папки `result_imgs`. Если аргумент --results_dir не указан, по умолчанию будет сформирована директория с именем `eval yy-mm-dd hh-mm`, где yy-mm-dd hh-mm - текущие год-число-месяц часы-минуты.
 
 Примеры запуска: 
  - **monet2photo**  
