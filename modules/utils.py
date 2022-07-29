@@ -110,9 +110,10 @@ class LossHistory():
 #         for item in history:
 #             f.write('%.4f\n' % item)
 
-            
+
+# the code was taken from the original work (https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/util/image_pool.py) and remastered            
 class ImagePool():
-    
+     
     def __init__(self, pool_size):
         
         self.pool_size = pool_size
