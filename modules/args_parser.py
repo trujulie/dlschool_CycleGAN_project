@@ -73,7 +73,7 @@ def parse_train_arguments():
                         help='folder to save result images. if not specified, it is set to "(dataset_name) train (year-month-day Hour-Min)"')
     
     parser.add_argument('--pretrained_weights_dir', type=str, default=None,
-                        help='directory where pretrained weights are saved. useful when phase="test" or "eval"')
+                        help='directory where pretrained weights are saved')
     
     
     args = parser.parse_args()
