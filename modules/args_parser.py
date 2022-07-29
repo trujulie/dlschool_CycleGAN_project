@@ -14,9 +14,9 @@ def parse_train_arguments():
     parser.add_argument('--unaligned', type=bool, default=True,
                             help='is dataset unaligned. default : True')
     parser.add_argument('--img_height', type=int, default=256,
-                            help='image height. default : 256')
+                            help='crop image to this height. default : 256')
     parser.add_argument('--img_width', type=int, default=256,
-                            help='image width. default : 256')
+                            help='crop image to this width. default : 256')
     parser.add_argument('--n_channels_input', type=int, default=3,
                             help='input image channels number. default: 3')
     parser.add_argument('--n_channels_output', type=int, default=3,
@@ -142,9 +142,9 @@ def parse_test_arguments():
     parser.add_argument('--unaligned', type=bool, default=True,
                             help='is dataset unaligned. default : True')
     parser.add_argument('--img_height', type=int, default=256,
-                            help='image height. default : 256')
+                            help='crop image to this height. default : 256')
     parser.add_argument('--img_width', type=int, default=256,
-                            help='image width. default : 256')
+                            help='crop image to this width. default : 256')
     parser.add_argument('--n_channels_input', type=int, default=3,
                             help='input image channels number. default: 3')
     parser.add_argument('--n_channels_output', type=int, default=3,
@@ -238,9 +238,9 @@ def parse_eval_arguments():
     parser.add_argument('--path_file', type=str, 
                         help='path to real image')
     parser.add_argument('--img_height', type=int, default=256,
-                            help='image height. default : 256')
+                            help='crop image to this height. default : 256')
     parser.add_argument('--img_width', type=int, default=256,
-                            help='image width. default : 256')
+                            help='crop image to this width. default : 256')
     parser.add_argument('--n_channels_input', type=int, default=3,
                             help='input image channels number. default: 3')
     parser.add_argument('--n_channels_output', type=int, default=3,
