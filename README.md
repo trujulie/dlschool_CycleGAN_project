@@ -26,10 +26,10 @@
 Рассмотрим, например, набор данных monet2photo. Он имеет следующую структуру каталога:
 ```
 |-monet2photo
-|--testA
-|--testB
-|--trainA
-|--trainB
+   |-testA
+   |-testB
+   |-trainA
+   |-trainB
 ```
 - trainA и testA - изображения картин Моне
 - trainB и testB - фотографии пейзажей.
