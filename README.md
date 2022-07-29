@@ -73,6 +73,78 @@
 
 Чтобы начать обучение модели CycleGAN, нужно запустить скрипт [`train_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/train_model.py). 
 
+```%bash
+usage: train_model.py [-h] [--home_dir HOME_DIR] [--dataset_name DATASET_NAME] [--unaligned UNALIGNED]
+                      [--img_height IMG_HEIGHT] [--img_width IMG_WIDTH] [--n_channels_input N_CHANNELS_INPUT]
+                      [--n_channels_output N_CHANNELS_OUTPUT] [--num_epochs NUM_EPOCHS] [--start_epoch START_EPOCH]
+                      [--decay_epoch DECAY_EPOCH] [--batch_size BATCH_SIZE]
+                      [--checkpoint_interval CHECKPOINT_INTERVAL] [--device DEVICE] [--gpu_ids GPU_IDS]
+                      [--n_cpu N_CPU] [--n_res_blocks N_RES_BLOCKS] [--lambda_cycle LAMBDA_CYCLE]
+                      [--use_idt_loss USE_IDT_LOSS] [--lambda_idt LAMBDA_IDT] [--init_weight INIT_WEIGHT]
+                      [--lr_discr LR_DISCR] [--lr_gen LR_GEN] [--b1 B1] [--b2 B2] [--n_photos N_PHOTOS]
+                      [--pool_size POOL_SIZE] [--checkpoints_dir CHECKPOINTS_DIR] [--losshistory_dir LOSSHISTORY_DIR]
+                      [--results_dir RESULTS_DIR] [--pretrained_weights_dir PRETRAINED_WEIGHTS_DIR]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --home_dir HOME_DIR   path to folder with image datasets. default : ./datasets
+  --dataset_name DATASET_NAME
+                        name of the dataset. default : monet2photo
+  --unaligned UNALIGNED
+                        is dataset unaligned. default : True
+  --img_height IMG_HEIGHT
+                        crop image to this height. default : 256
+  --img_width IMG_WIDTH
+                        crop image to this width. default : 256
+  --n_channels_input N_CHANNELS_INPUT
+                        input image channels number. default: 3
+  --n_channels_output N_CHANNELS_OUTPUT
+                        output image channels number. default: 3
+  --num_epochs NUM_EPOCHS
+                        number of epochs to train. default: 200
+  --start_epoch START_EPOCH
+                        epoch number from which to start training. start_epoch should be divisible by
+                        checkpoint_interval. default: 0
+  --decay_epoch DECAY_EPOCH
+                        number of epoch from which to start lr decay. default: 100
+  --batch_size BATCH_SIZE
+                        size of batch. default: 1
+  --checkpoint_interval CHECKPOINT_INTERVAL
+                        how often to save checkpoints. default: 20
+  --device DEVICE       device type. default : cuda
+  --gpu_ids GPU_IDS     IDs of gpus to use: e.g. 0 0,1,2, 0,2. default : 0
+  --n_cpu N_CPU         number of cpus to use. default : 10
+  --n_res_blocks N_RES_BLOCKS
+                        number of residual blocks in generator. default: 9
+  --lambda_cycle LAMBDA_CYCLE
+                        cycle loss weight. default: 10
+  --use_idt_loss USE_IDT_LOSS
+                        whether to use identity loss. default: True
+  --lambda_idt LAMBDA_IDT
+                        identity loss weight. default: 5
+  --init_weight INIT_WEIGHT
+                        model weights will be initialized with normal distribution with mean=0 and std=init_weight.
+                        default: 0.02
+  --lr_discr LR_DISCR   discriminator optimizer learning rate. default: 2e-4
+  --lr_gen LR_GEN       generator optimizer learning rate. default: 2e-4
+  --b1 B1               Adam optimizer beta1 coefficient. default: 0.5
+  --b2 B2               Adam optimizer beta2 coefficient. default: 0.999
+  --n_photos N_PHOTOS   number of images to check results on. default: 5
+  --pool_size POOL_SIZE
+                        size of image pool to store previously generated images. default: 50
+  --checkpoints_dir CHECKPOINTS_DIR
+                        directory to store checkpoints. if not specified, it is set to "(dataset_name) train (year-
+                        month-day Hour-Min)"
+  --losshistory_dir LOSSHISTORY_DIR
+                        directory to store loss history. if not specified, it is set to "(dataset_name) train (year-
+                        month-day Hour-Min)"
+  --results_dir RESULTS_DIR
+                        folder to save result images. if not specified, it is set to "(dataset_name) train (year-
+                        month-day Hour-Min)"
+  --pretrained_weights_dir PRETRAINED_WEIGHTS_DIR
+                        directory where pretrained weights are saved
+```
+
 В директории `checkpoints` создается папка --checkpoints_dir. Каждые checkpoint_interval эпох в папку `epoch_i` будут сохраняться выученные за i эпох веса моделей. 
 **Стоит обратить внимание**, что i начинается с 0, поэтому крайние обученные веса моделей будут лежать в папке с именем `epoch_(num_epochs-1)`.
 
@@ -103,6 +175,58 @@ python train_model.py --dataset_name=landscape2space --use_idt_loss=False
 
 Чтобы протестировать качество работы модели CycleGAN, нужно запустить скрипт [`test_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/test_model.py).
 
+```%bash
+usage: test_model.py [-h] [--home_dir HOME_DIR] [--dataset_name DATASET_NAME] [--unaligned UNALIGNED]
+                     [--img_height IMG_HEIGHT] [--img_width IMG_WIDTH] [--n_channels_input N_CHANNELS_INPUT]
+                     [--n_channels_output N_CHANNELS_OUTPUT] [--batch_size BATCH_SIZE] [--device DEVICE]
+                     [--gpu_ids GPU_IDS] [--n_cpu N_CPU] [--n_res_blocks N_RES_BLOCKS] [--lambda_cycle LAMBDA_CYCLE]
+                     [--use_idt_loss USE_IDT_LOSS] [--lambda_idt LAMBDA_IDT] [--init_weight INIT_WEIGHT]
+                     [--pool_size POOL_SIZE] [--losshistory_dir LOSSHISTORY_DIR] [--results_dir RESULTS_DIR]
+                     [--pretrained_weights_dir PRETRAINED_WEIGHTS_DIR]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --home_dir HOME_DIR   path to folder with image datasets. default : ./datasets
+  --dataset_name DATASET_NAME
+                        name of the dataset. default : monet2photo
+  --unaligned UNALIGNED
+                        is dataset unaligned. default : True
+  --img_height IMG_HEIGHT
+                        crop image to this height. default : 256
+  --img_width IMG_WIDTH
+                       crop image to this width. default : 256
+  --n_channels_input N_CHANNELS_INPUT
+                        input image channels number. default: 3
+  --n_channels_output N_CHANNELS_OUTPUT
+                        output image channels number. default: 3
+  --batch_size BATCH_SIZE
+                        size of batch. default: 1
+  --device DEVICE       device type. default : cuda
+  --gpu_ids GPU_IDS     IDs of gpus to use: e.g. 0 0,1,2, 0,2. default : 0
+  --n_cpu N_CPU         number of cpus to use. default : 10
+  --n_res_blocks N_RES_BLOCKS
+                        number of residual blocks in generator. should be the same as in pretrained model. default: 9
+  --lambda_cycle LAMBDA_CYCLE
+                        cycle loss weight. default: 10
+  --use_idt_loss USE_IDT_LOSS
+                        whether to use identity loss. default: True
+  --lambda_idt LAMBDA_IDT
+                        identity loss weight. default: 5
+  --init_weight INIT_WEIGHT
+                        model weights will be initialized with normal distribution with mean=0 and std=init_weight.
+                        default: 0.02
+  --pool_size POOL_SIZE
+                        size of image pool to store previously generated images. default: 50
+  --losshistory_dir LOSSHISTORY_DIR
+                        directory to store loss history. if not specified, it is set to "(dataset_name) test (year-
+                        month-day Hour-Min)"
+  --results_dir RESULTS_DIR
+                        folder to save result images. if not specified, it is set to "(dataset_name) test (year-month-
+                        day Hour-Min)"
+  --pretrained_weights_dir PRETRAINED_WEIGHTS_DIR
+                        directory where pretrained weights for all models are saved
+```
+
 В качестве аргументов обязательно нужно указать аргумент --pretrained_weights_dir путь в директорию, в которой хранятся предобученные веса моделей.
 
 В директории `loss_history` создается папка --losshistory_dir. Значения лоссов на каждой батче будут сохраняться в эту директорию в файле `test_loss.csv`.
@@ -128,6 +252,33 @@ python test_model.py --dataset_name=landscape2space --pretrained_weights_dir=./c
 # Генерация
 
 Чтобы сгенерировать результат для своего изображения, нужно запустить скрипт [`eval_model.py`](https://github.com/trujulie/dlschool_CycleGAN_project/blob/main/eval_model.py).   
+
+```%bash
+usage: eval_model.py [-h] [--path_file PATH_FILE] [--img_height IMG_HEIGHT] [--img_width IMG_WIDTH]
+                     [--n_channels_input N_CHANNELS_INPUT] [--n_channels_output N_CHANNELS_OUTPUT]
+                     [--n_res_blocks N_RES_BLOCKS] [--device DEVICE] [--path_checkpoints PATH_CHECKPOINTS]
+                     [--results_dir RESULTS_DIR]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --path_file PATH_FILE
+                        path to real image
+  --img_height IMG_HEIGHT
+                        crop image to this height. default : 256
+  --img_width IMG_WIDTH
+                        crop image to this width. default : 256
+  --n_channels_input N_CHANNELS_INPUT
+                        input image channels number. default: 3
+  --n_channels_output N_CHANNELS_OUTPUT
+                        output image channels number. default: 3
+  --n_res_blocks N_RES_BLOCKS
+                        number of residual blocks in generator. should be the same as in pretrained model. default: 9
+  --device DEVICE       device type. default : cuda
+  --path_checkpoints PATH_CHECKPOINTS
+                        path to generator pretrained weights file
+  --results_dir RESULTS_DIR
+                        folder to save result images. if not specified it is set to "eval (year-month-day Hour-Min)"
+```
 
 Путь к выбранному изображению нужно передать через аргумент --path_file.    
 В аргументе --path_checkpoints нужно указать путь к файлу, в котором лежат веса генератора для правильного класса. То есть, например, если мы выбрали изображение картины Моне (класс А в датасете), то и в аргумент  --path_checkpoints мы передаем веса генератора, обученного переводить изображения из класса A в класс B.   
