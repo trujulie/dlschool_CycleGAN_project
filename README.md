@@ -24,10 +24,8 @@
 Здесь должны лежать датасеты для обучения и тестирования модели.  
 На данный момент доступны два набора данных (их можно скачать по ссылкам, кликнув на название): 
  - [landscape2space](https://drive.google.com/drive/folders/1CtHyhVe15RUVcbEtko8jpvajzkeIvBwK)    
-   Фотографии пейзажей взяты из этого датасета [Landscape Pictures](https://www.kaggle.com/datasets/arnaud58/landscape-pictures) с платформы Kaggle.
- 
-   Космические фотографии получены путем фильтрации датасета [Cosmos Images](https://www.kaggle.com/datasets/kimbosoek/cosmos-images) с платформы Kaggle.
-   
+   Фотографии пейзажей взяты из этого датасета [Landscape Pictures](https://www.kaggle.com/datasets/arnaud58/landscape-pictures) с платформы Kaggle.  
+   Космические фотографии получены путем фильтрации датасета [Cosmos Images](https://www.kaggle.com/datasets/kimbosoek/cosmos-images) с платформы Kaggle.   
  - [monet2photo](https://people.eecs.berkeley.edu/~taesung_park/CycleGAN/datasets/monet2photo.zip).  
     
 Каждый набор состоит из двух датасетов, относящихся к разным классам, которые разбиты на обучающую и тестовую подвыборки в одинаковом соотношении.
@@ -51,8 +49,8 @@
 ## `checkpoints`
 Веса моделей, полученные в процессе обучения, будут сохраняться **здесь**.
 
-На данный момент доступны предобученные веса для двух датасетов: [landscape2space](https://drive.google.com/drive/folders/1QsmJbrNlSFKz8SGzDVgOEiGWh-tvqD1c) и [monet2photo](https://drive.google.com/drive/folders/1QsmJbrNlSFKz8SGzDVgOEiGWh-tvqD1c). Их уже можно использовать для генерации собственных картинок :wink:.    
-Из-за ограничений github на размер файлов, в репозитории сейчас нет этих файлов. Их можно скачать по ссылкам, кликнув на название. 
+На данный момент доступны предобученные веса для двух датасетов: [landscape2space](https://drive.google.com/drive/folders/1QsmJbrNlSFKz8SGzDVgOEiGWh-tvqD1c) и [monet2photo](https://drive.google.com/drive/folders/1QsmJbrNlSFKz8SGzDVgOEiGWh-tvqD1c). Их уже можно скачать по ссылкам, кликнув на название, и использовать для генерации собственных картинок :wink:.    
+
 
 ## `loss_history`
 Значения функций потерь, полученные во время обучения или тестирования модели, будут храниться **здесь** (например, см. `loss_history/landscape2space train` или `loss_history/landscape2space test`, соответственно).
